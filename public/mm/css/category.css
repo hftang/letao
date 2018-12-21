@@ -1,16 +1,16 @@
-.cate_left{
+.cate_left {
     float: left;
     width: 100px;
 }
 
-.cate_left ul{
+.cate_left ul {
     list-style: none;
     margin: 0px;
     padding: 0px;
 
 }
 
-.cate_left ul li{
+.cate_left ul li {
 
     background: #f3f4f5;
     width: 100%;
@@ -20,18 +20,53 @@
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
 
-
 }
-.cate_left ul li.now{
+
+.cate_left ul li.now {
     background: #FFFFFF;
     border-right: none;
 }
 
-.cate_left ul li a{
+.cate_left ul li a {
     color: #333;
     display: block;
 }
 
-.cate_left ul li.now a{
+.cate_left ul li.now a {
     color: orange;
 }
+
+/*右边二级分类*/
+
+.cate_right {
+    overflow: hidden;
+}
+
+.cate_right ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+}
+
+.cate_right ul li {
+    float: left;
+    padding: 3px 6px;
+    width:33.333%;
+    padding-top: 10px;
+}
+.cate_right ul li p{
+    margin: 0px;
+    color: #666;
+}
+
+.cate_right ul li a {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.cate_right ul li a img {
+    width: 100%;
+}
+

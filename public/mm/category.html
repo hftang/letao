@@ -39,32 +39,20 @@
             <!--局部滑动模块-->
             <div class="mui-scroll-wrapper">
 
+                <!--一级分类-->
                 <div class="cate_left">
                     <ul>
-                        <li class="now">
-                            <a href="#">运动类</a>
-                        </li>
-                        <li>
-                            <a href="#">运动类</a>
-                        </li>
-                        <li>
-                            <a href="#">运动类</a>
-                        </li>
-                        <li>
-                            <a href="#">运动类</a>
-                        </li>
-                        <li>
-                            <a href="#">运动类</a>
-                        </li>
-                        <li>
-                            <a href="#">运动类</a>
-                        </li>
+
                     </ul>
-
-
-
                 </div>
-                <div class="cate_right"></div>
+                <!--二级分类-->
+                <div class="cate_right">
+                    <ul>
+
+
+
+                    </ul>
+                </div>
 
             </div>
         </div>
@@ -81,8 +69,32 @@
     </footer>
 </div>
 
+<!--使用模板-->
+<script type="text/template" id="firstTemplate">
+
+    <% for(var i=0;i<rows.length; i++){%>
+    <li class="<%=i==0?'now':'' %>" data-id="<%=rows[i].id %>">
+        <a href="javascript:;"><%=rows[i].categoryName%></a>
+    </li>
+    <%}%>
+
+</script>
+
+<script type="text/template" id="secondTemplate">
+    <% for(var i=0;i<rows.length;i++){%>
+    <li>
+        <a href="javascript:;">
+            <img src="<%=rows[i].brandLogo%>" alt="">
+            <p><%=rows[i].brandName %></p>
+        </a>
+
+    </li>
+    <%}%>
+</script>
+
 <script src="assets/mui/js/mui.min.js"></script>
 <script src="assets/zepto/zepto.min.js"></script>
+<script src="assets/artTemplate/template-native.js"></script>
 <script src="js/category.js"></script>
 </body>
 </html>
