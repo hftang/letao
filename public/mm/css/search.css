@@ -1,0 +1,38 @@
+.lt_wrapper {
+    padding: 10px 10px;
+    width: 100%;
+}
+
+.lt_wrapper .lt_search {
+    position: relative;
+}
+
+.lt_wrapper .lt_search input {
+    width: 100%;
+    border: 1px solid #006699;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    margin: 0px;
+    padding: 0px 0px 0px 10px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.lt_wrapper .lt_search a {
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background: #006699;
+    color: #fff;
+    height: 39px;
+    width: 80px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 40px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+}
+
