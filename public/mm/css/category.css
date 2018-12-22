@@ -19,6 +19,7 @@
     line-height: 50px;
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
+    overflow: hidden;
 
 }
 
