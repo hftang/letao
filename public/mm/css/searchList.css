@@ -1,0 +1,70 @@
+/*排序*/
+.lt_ordeer{
+    width: 100%;
+    background:#eee;
+    height: 30px;
+
+}
+.lt_ordeer a{
+    width: 25%;
+    float: left;
+    text-align: center;
+    font-size: 12px;
+    height: 100%;
+    line-height: 30px;
+    color: #333;
+}
+.lt_ordeer a.now{
+    color: orange;
+}
+.lt_ordeer a span{
+    margin-left: 10px;
+}
+/*商品区*/
+.lt_product{
+    width: 100%;
+    padding: 10px 10px;
+}
+.lt_product .product_box{
+    box-shadow: 0 0 4px #ccc;
+    width: 48%;
+    float: left;
+    padding: 10px 0;
+
+}
+.lt_product .product_box:nth-child(2n){
+    float: right;
+}
+.lt_product .product_box a{
+    display: block;
+    text-align: center;
+}
+.lt_product .product_box a img{
+    width: 100%;
+}
+.lt_product .product_box a p{
+    margin: 0px;
+}
+
+.lt_product .product_box a p:first-of-type{
+    color: #333;
+}
+.lt_product .product_box a p:last-of-type{
+    padding: 4px 0;
+}
+.lt_product .product_box a .now_price{
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+}
+.lt_product .product_box a .old_price{
+    color: #ccc;
+    font-size: 14px;
+    text-decoration: line-through;
+}
+
+.lt_product .product_box a button{
+    background: #006699;
+    color: #fff;
+}
+
