@@ -8,16 +8,16 @@ $(function () {
     var params = window.LT.getParamsByUrl()
     //2把获取到的传参给input赋值
     var $input = $('input').val(params.key || '')
-    //3获取查询数据
-    getSearchDatas({
-        proName: $input.val(),
-        page: 1,
-        pageSize: 4
-    }, function (data) {
-        console.log(data)
-        $('.lt_product').html(template('list', data))
-
-    })
+    //3获取查询数据  因为下拉刷新是自动的 所以这步可以省略
+    // getSearchDatas({
+    //     proName: $input.val(),
+    //     page: 1,
+    //     pageSize: 4
+    // }, function (data) {
+    //     console.log(data)
+    //     $('.lt_product').html(template('list', data))
+    //
+    // })
     //4点击搜索 对关键字进行搜索
     $('.search-btn').on('tap', function (e) {
         var key = $.trim($input.val())
@@ -80,7 +80,95 @@ $(function () {
             $('.lt_product').html(template('list', data))
         })
 
-    })
+    });
+
+    //6 下拉刷新
+    mui.init({
+        pullRefresh: {
+            container: "#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+            down: {
+                // style:'circle',//必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+                // color:'#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+                // height:'50px',//可选,默认50px.下拉刷新控件的高度,
+                // range:'100px', //可选 默认100px,控件可下拉拖拽的范围
+                // offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
+                auto: true,//可选,默认false.首次加载自动上拉刷新一次 这样做后 第二步就可以不用去做了
+                //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+                callback: function () {
+                    that = this
+                    //去掉条件 和 箭头字体样式
+                    $('.lt_ordeer a').removeClass('now').find('span').removeClass('fa-angle-up').addClass('fa-angle-down')
+                    //重新获取数据 然后关闭刷新
+                    var key = $.trim($input.val())
+                    if (!key) {
+                        mui.toast('请输入关键字')
+                        return false;
+                    }
+                    getSearchDatas({
+                        proName: key,
+                        page: 1,
+                        pageSize: 4
+                    }, function (data) {
+                        setTimeout(function () {
+                            console.log(data)
+                            that.endPulldownToRefresh()
+                            $('.lt_product').html(template('list', data))
+
+                        }, 900)
+
+                    })
+
+
+                }
+            },
+            //上拉加载更多
+            up: {
+                contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+                contentnomore:'没有更多数据了',
+                callback: function () {
+                    var that = this
+                    window.page++
+                    var key = $.trim($input.val())
+                    if (!key) {
+                        mui.toast('请输入关键字')
+                        return false;
+                    }
+                    var params={
+                        proName: key,
+                        page: window.page,
+                        pageSize: 4,
+                    }
+                    var dataType = $('.lt_ordeer a.now').attr('data-order');
+                    var dataValue = $('.lt_ordeer a.now').find('span').hasClass('fa-angle-up') ? 1 : 2;
+
+                    params[dataType]=dataValue
+
+                    getSearchDatas(params, function (data) {
+                       setTimeout(function () {
+
+                           //加载更多这里是追加
+                           $('.lt_product').append(template('list', data))
+
+                           if (data.data.length) {
+                               console.log('---> stop')
+                               //停止加载
+                               that.endPullupToRefresh(false)
+                           } else {
+                               console.log('---> add')
+                               //停止加载
+                               that.endPullupToRefresh(true)
+
+                               //上拉重置
+                               that.refresh(true)
+                           }
+                       },800)
+
+                    })
+
+                }
+            }
+        }
+    });
 
 
 });
@@ -92,6 +180,9 @@ var getSearchDatas = function (params, callBack) {
         data: params,
         dataType: 'json',
         success: function (data) {
+            //记录下page
+            window.page = data.page
+            console.log("page:" + data.page)
 
             callBack && callBack(data)
 

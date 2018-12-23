@@ -30,6 +30,7 @@
     width: 48%;
     float: left;
     padding: 10px 0;
+    margin: 6px 0;
 
 }
 .lt_product .product_box:nth-child(2n){
