@@ -141,7 +141,7 @@ $(function () {
                     var dataType = $('.lt_ordeer a.now').attr('data-order');
                     var dataValue = $('.lt_ordeer a.now').find('span').hasClass('fa-angle-up') ? 1 : 2;
 
-                    params[dataType]=dataValue
+                    params[dataType]=dataValue  
 
                     getSearchDatas(params, function (data) {
                        setTimeout(function () {
