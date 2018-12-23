@@ -48,69 +48,30 @@
                             <form action="javascript:;">
                                 <input type="text" placeholder="搜索你喜欢的东西">
                             </form>
-                            <a href="javascript:;">搜索</a>
+                            <a href="javascript:;" class="search-btn">搜索</a>
                         </div>
                     </div>
                     <!--排序-->
                     <div class="lt_ordeer">
-                        <a href="#">上架时间<span class="fa fa-angle-down"></span></a>
-                        <a href="#" class="now">价格<span class="fa fa-angle-down"></span></a>
-                        <a href="#">销量<span class="fa fa-angle-down"></span></a>
-                        <a href="#">折扣<span class="fa fa-angle-down"></span></a>
+                        <a href="javascript:;" data-order="time">上架时间<span class="fa fa-angle-down"></span></a>
+                        <a href="javascript:;" data-order="price">价格<span class="fa fa-angle-down"></span></a>
+                        <a href="#" data-order="num">销量<span class="fa fa-angle-down"></span></a>
+                        <a href="#" data-order="scale">折扣<span class="fa fa-angle-down"></span></a>
                     </div>
                     <!--商品区-->
-                    <div CLASS="lt_product">
-                        <div class="product_box">
-                            <a href="#">
-                                <img src="images/product.jpg" alt="">
-                                <p class="mui-ellipsis-2">addisa 阿迪达斯 青春休闲款 2019你值得拥有！！！赶紧下手等等</p>
-                                <p><span class="now_price">&yen;360</span>&nbsp;&nbsp;<span class="old_price">&yen;660</span></p>
-                                <button>立即购买</button>
-                            </a>
-                        </div>
+                    <div class="lt_product">
+                        <!--<div class="product_box">-->
+                            <!--<a href="#">-->
+                                <!--<img src="images/product.jpg" alt="">-->
+                                <!--<p class="mui-ellipsis-2">addisa 阿迪达斯 青春休闲款 2019你值得拥有！！！赶紧下手等等</p>-->
+                                <!--<p><span class="now_price">&yen;360</span>&nbsp;&nbsp;<span class="old_price">&yen;660</span></p>-->
+                                <!--<button>立即购买</button>-->
+                            <!--</a>-->
+                        <!--</div>-->
 
-                        <div class="product_box">
-                            <a href="#">
-                                <img src="images/product.jpg" alt="">
-                                <p class="mui-ellipsis-2">addisa 阿迪达斯 青春休闲款 2019你值得拥有！！！赶紧下手等等</p>
-                                <p><span class="now_price">&yen;360</span> &nbsp;&nbsp;<span class="old_price">&yen;660</span></p>
-                                <button>立即购买</button>
-                            </a>
-                        </div>
-                        <div class="product_box">
-                            <a href="#">
-                                <img src="images/product.jpg" alt="">
-                                <p class="mui-ellipsis-2">addisa 阿迪达斯 青春休闲款 2019你值得拥有！！！赶紧下手等等</p>
-                                <p><span class="now_price">&yen;360</span>&nbsp;&nbsp;<span class="old_price">&yen;660</span></p>
-                                <button>立即购买</button>
-                            </a>
-                        </div>
 
-                        <div class="product_box">
-                            <a href="#">
-                                <img src="images/product.jpg" alt="">
-                                <p class="mui-ellipsis-2">addisa 阿迪达斯 青春休闲款 2019你值得拥有！！！赶紧下手等等</p>
-                                <p><span class="now_price">&yen;360</span> &nbsp;&nbsp;<span class="old_price">&yen;660</span></p>
-                                <button>立即购买</button>
-                            </a>
-                        </div>
-                        <div class="product_box">
-                            <a href="#">
-                                <img src="images/product.jpg" alt="">
-                                <p class="mui-ellipsis-2">addisa 阿迪达斯 青春休闲款 2019你值得拥有！！！赶紧下手等等</p>
-                                <p><span class="now_price">&yen;360</span>&nbsp;&nbsp;<span class="old_price">&yen;660</span></p>
-                                <button>立即购买</button>
-                            </a>
-                        </div>
 
-                        <div class="product_box">
-                            <a href="#">
-                                <img src="images/product.jpg" alt="">
-                                <p class="mui-ellipsis-2">addisa 阿迪达斯 青春休闲款 2019你值得拥有！！！赶紧下手等等</p>
-                                <p><span class="now_price">&yen;360</span> &nbsp;&nbsp;<span class="old_price">&yen;660</span></p>
-                                <button>立即购买</button>
-                            </a>
-                        </div>
+
 
 
                     </div>
@@ -135,10 +96,29 @@
     </footer>
 </div>
 
+<script type="text/template" id="list">
+<% for(var i=0;i<data.length;i++){%>
+<% var item=data[i]%>
+<div class="product_box">
+    <a href="product.html?productId=<%=item.id%>">
+        <% if(item.pic&&item.pic[0]){%>
+        <img src="<%=item.pic[0].picAddr%>" alt="">
+        <%} else{%>
+        <img src="images/none.jpg" alt="">
+        <%}%>
+        <p class="mui-ellipsis-2"><%=item.proName%></p>
+        <p><span class="now_price">&yen;<%=item.price%></span> &nbsp;&nbsp;<span class="old_price">&yen;<%=item.oldPrice%></span></p>
+        <button>立即购买</button>
+    </a>
+</div>
+    <%}%>
+</script>
+
 
 <script src="assets/mui/js/mui.min.js"></script>
 <script src="assets/zepto/zepto.min.js"></script>
 <script src="assets/artTemplate/template-native.js"></script>
 <script src="js/searchList.js"></script>
+<script src="js/common.js"></script>
 </body>
 </html>
