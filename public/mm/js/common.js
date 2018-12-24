@@ -1,6 +1,7 @@
 window.LT = {}
 LT.loginPath = '/mm/user/login.html'
-LT.cartUrl='/mm/user/cart.html'
+LT.cartUrl = '/mm/user/cart.html'
+LT.userUrl='/mm/user/index.html'
 
 //获取get传过来的参数
 LT.getParamsByUrl = function () {
@@ -40,6 +41,19 @@ LT.ajaxLogin = function (params) {
             mui.toast('服务器繁忙')
         }
     })
+};
+//将序列化的字符串 转换成对象
 
+LT.serialize2Object = function (serializeStr) {
+    var obj = {}
+    if (serializeStr) {
+        var arr = serializeStr.split('&')
+        arr.forEach((item, i) => {
+            var itemArr = item.split('=')
+            obj[itemArr[0]] = itemArr[1]
+        })
+    }
+
+    return obj;
 
 }

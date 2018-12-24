@@ -24,8 +24,9 @@ router.post("/register", function (req, res) {
   if (!req.body.password)  return res.send({ "error": 403, "message": "密码未填写！" });
   if (!req.body.mobile)  return res.send({ "error": 403, "message": "用户手机号未填写！" });
   //密码加密
-  var md5 = crypto.createHash('md5');
-  var password = md5.update(req.body.password).digest('base64');
+  // var md5 = crypto.createHash('md5');
+  // var password = md5.update(req.body.password).digest('base64');
+    var password=req.body.password
 
   var newUser = new User({
     username: req.body.username,
@@ -57,11 +58,12 @@ router.post("/register", function (req, res) {
 
 router.post("/login", function (req, res) {
   var md5 = crypto.createHash('md5');
-  var password = md5.update(req.body.password).digest('base64');
+  // var password = md5.update(req.body.password).digest('base64');
+    var password=req.body.password;
   User.getUserByName(req.body.username, function (err, result) {
     if (result.length ==0) return res.send({ "error": 403, "message": "用户名不存在! " });
     if (result[0].password != password) return res.send({ "error": 403, "message": "密码错误！" });
-
+    console.log('---hftang')
     req.session.user = result[0];
     console.log(req.session.user);
     res.send({ "success": true });
@@ -129,11 +131,11 @@ router.get("/queryUserMessage", function (req, res) {
 });
 var createCode = function () {
   var code = "";
-  var codeLength = 6;//验证码的长度   
-  var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);//随机数  
-  for (var i = 0; i < codeLength; i++) {//循环操作  
-    var index = Math.floor(Math.random() * 10);//取得随机数的索引（0~35）  
-    code += random[index];//根据索引取得随机数加到code上  
+  var codeLength = 6;//验证码的长度
+  var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);//随机数
+  for (var i = 0; i < codeLength; i++) {//循环操作
+    var index = Math.floor(Math.random() * 10);//取得随机数的索引（0~35）
+    code += random[index];//根据索引取得随机数加到code上
   }
   return code;
 }
