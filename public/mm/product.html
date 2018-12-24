@@ -41,16 +41,11 @@
                 <div class="mui-scroll">
                     <!--这里放置真实显示的DOM内容-->
                     <!--轮播图 todo-->
-
-                 <div class="loading">
-                     <!--搞一个加载动画-->
-                     <p class="mui-icon mui-icon-spinner mui-spin "></p>
-                 </div>
-
-
+                    <div class="loading">
+                        <!--搞一个加载动画-->
+                        <p class="mui-icon mui-icon-spinner mui-spin "></p>
+                    </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -69,7 +64,7 @@
 
     <div class="mui-slider">
         <div class="mui-slider-group mui-slider-loop">
-          <%
+            <%
 
             if(!pic||!pic.length){
 
@@ -77,12 +72,14 @@
 
             }
 
-          %>
+            %>
             <div class="mui-slider-item mui-slider-item-duplicate">
                 <a href=""> <img src="<%=pic[pic.length-1].picAddr%>" alt=""></a>
             </div>
 
-            <% for(var i=0;i<pic.length;i++){%>
+            <% for(var i=0;i
+            <pic.length
+            ;i++){%>
             <div class="mui-slider-item">
                 <a href=""> <img src="<%=pic[i].picAddr%>" alt=""></a>
             </div>
@@ -98,7 +95,9 @@
 
         <div class="mui-slider-indicator">
             <%
-            for(var i=0;i<pic.length;i++){
+            for(var i=0;i
+            <pic.length
+            ;i++){
             %>
             <div class="mui-indicator <%=i==0?'mui-active':''%>"></div>
 
@@ -106,7 +105,7 @@
         </div>
     </div>
     <div class="p_title">
-       <%=proName%>
+        <%=proName%>
     </div>
     <div class="p_price">
         价格：
