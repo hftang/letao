@@ -57,6 +57,7 @@ router.post("/register", function (req, res) {
 });
 
 router.post("/login", function (req, res) {
+    console.log('---hftang---')
   var md5 = crypto.createHash('md5');
   // var password = md5.update(req.body.password).digest('base64');
     var password=req.body.password;

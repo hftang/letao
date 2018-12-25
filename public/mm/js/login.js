@@ -6,7 +6,7 @@ $(function () {
 
         var serializeStr = $('form').serialize()
         var obj = LT.serialize2Object(serializeStr)
-        console.log(obj)
+
 
         //数据的校验
         if (!obj.username) {
@@ -25,6 +25,8 @@ $(function () {
             dataType: 'json',
             data: obj,
             success: function (data) {
+
+                console.log('失败' + data)
                 if (data.success == true) {
 
                     var returnUrl = location.search.replace('?returnUrl=', '')
@@ -34,11 +36,13 @@ $(function () {
                         location.href = LT.userUrl
                     }
 
+                } else {
+                    mui.toast(data.message)
                 }
 
             },
             error: function (data) {
-                console.log("hftang:"+data)
+                console.log("hftang:" + data)
 
             }
         })
