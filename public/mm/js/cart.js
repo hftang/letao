@@ -12,7 +12,7 @@ $(function () {
 
                 }
             },
-            //上拉加载更多
+            //上拉加载更多车
             up:{
                 callback:function () {
                     
